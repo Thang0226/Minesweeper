@@ -22,4 +22,5 @@ function startPlay() {
   }
   let game_board = new GameBoard(numRows, numCols, numMines, "game-board");
   game_board.initBoard();
+  game_board.startClock();
 }

@@ -53,6 +53,8 @@ Tạo class GameBoard:
         openAdjacentCells(x,y): void
         checkWin(): void
         endGame(): void
+        startClock(): void
+        updateTime(): void
 
 
 

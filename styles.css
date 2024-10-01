@@ -3,15 +3,39 @@ body {
   text-align: center;
 }
 
+button {
+  display: inline-block;
+  font-family: inherit;
+  font-size: 19px;
+  color: white;
+  background-color: #333;
+  border-radius: 8px;
+  text-align: center;
+  width: 70px;
+  height: 33px;
+  cursor: pointer;
+}
+
+#clock {
+  display: inline-block;
+  font-family: inherit;
+  font-size: 19px;
+  background-color: white;
+  color: #000;
+  border-radius: 5px;
+  text-align: center;
+  width: 50px;
+  height: 30px;
+  padding: 0;
+}
+
 h1 {
   margin-bottom: 12px;
 }
 
-p {
+h3 {
   text-align: left;
   margin-bottom: 5px;
-  margin-left: 20px;
-  font-weight: bold;
 }
 
 ul {
@@ -26,22 +50,37 @@ span {
   color: blue;
 }
 
-button,
 select {
   margin-bottom: 18px;
-  width: 60px;
+  width: 90px;
   height: 30px;
   font-size: 18px;
 }
 
-select {
-  width: 100px;
+table {
+  border-collapse: collapse;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+th {
+  border: 1px solid gray;
+  height: 30px;
+  color: green;
+}
+
+td {
+  border: 1px solid gray;
+  width: 80px;
+  height: 30px;
+  color: green;
 }
 
 .cell {
   width: 30px;
   height: 28px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   display: inline-block;
   text-align: center;
   vertical-align: middle;
@@ -66,4 +105,22 @@ select {
 .mine {
   /* Color for mines */
   background-color: #a02727;
+}
+
+#game-board {
+  margin-bottom: 20px;
+}
+
+#instruction {
+  display: inline-block;
+  width: 60%;
+  margin-right: 10px;
+  color: gray;
+}
+
+#high-scores {
+  display: inline-block;
+  width: 30%;
+  vertical-align: top;
+  color: gray;
 }

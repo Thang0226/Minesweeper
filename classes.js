@@ -1,3 +1,6 @@
+const clock = document.getElementById("clock");
+let clockIntervalID = null;
+
 class Cell {
   constructor() {
     this.isMine = false;
@@ -213,5 +216,24 @@ class GameBoard {
         }
       }
     }
+  }
+
+  // count processing time
+  startClock() {
+    let begin_time = new Date();
+    if (clockIntervalID) {
+      clearInterval(clockIntervalID);
+      clockIntervalID = null;
+    }
+    clockIntervalID = setInterval(() => this.updateTime(begin_time), 1000);
+  }
+  updateTime(begin) {
+    if (this.gameOver) {
+      clock.value = 0;
+      return;
+    }
+    let date = new Date();
+    let time = date.getTime() - begin.getTime();
+    clock.value = Math.round(time / 1000);
   }
 }
