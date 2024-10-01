@@ -1,0 +1,58 @@
+1. Thông tin về các ô trong trò chơi được chứa trong một mảng 2 chiều.
+
+2. Khi khởi tạo trò chơi, các ô đều trắng và chỉ hiển thị thông tin của ô nếu được nhấn vào.
+
+2. Nếu người dùng nhấn vào ô có chứa mìn, trò chơi sẽ kết thúc và 
+tất cả các quả mìn sẽ được hiển thị.
+
+3. Nếu người dùng nhấn vào ô không chứa mìn mà là một số, số tại vị trí đó cho biết số lượng 
+ô hàng xóm là mìn. Mỗi vị trí có nhiều nhất 8 hàng xóm.
+Lưu ý rằng các nút ở các cạnh có ít hơn 8 hàng xóm. Ví dụ, một nút góc chỉ có ba hàng xóm, một nút cạnh
+chỉ có 5 hàng xóm.
+
+4. Nếu người dùng nhấp vào nút vừa không chứa mìn vừa không phải số, 
+chương trình sẽ tiếp tục tự động nhấn các nút lân cận không nằm cạnh mìn theo cách đệ quy.
+
+5. Trò chơi sẽ kết thúc khi tất cả các nút có chứa mìn đã được đánh dấu chính xác và tất cả các nút 
+khác đã được nhấp (nếu trò chơi chưa kết thúc do nhấn vào ô chứa mìn).
+
+6. Trò chơi của bạn sẽ sử dụng Math.random() để đặt ngẫu nhiên các quả mìn.
+
+7. Nhấn chuột trái vào ô để mở ô.
+
+8. Nhấn chuột phải vào ô để đánh dấu là bom. Nếu ô đã được đánh dấu là bom, nhấn chuột phải đánh dấu ô thành dấu hỏi (?) 
+
+9. Khi một ô số đã được mở, nhấn đúp vào ô đó sẽ mở tất cả những ô hàng xóm, trừ những ô đã được đánh dấu là bom hoặc đánh dấu hỏi.
+
+
+
+Tạo class Cell:
+    Thuộc tính:
+        isMine: boolean
+        isOpen: boolean
+        isFlagged: boolean
+        mineCount: int
+
+
+Tạo class GameBoard:
+    Thuộc tính:
+        numRows: int
+        numCols: int
+        numMines: int
+        elementId: string
+        cells: array of Cell objects
+        gameOver: boolean
+
+    Phương thức:
+        initBoard(): void
+        placeMines(): void
+        updateMineCounts(): void
+        draw(): void
+        openCell(x,y): void
+        toggleFlag(x,y): void
+        openAdjacentCells(x,y): void
+        checkWin(): void
+        endGame(): void
+
+
+
