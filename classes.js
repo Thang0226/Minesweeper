@@ -136,34 +136,6 @@ class GameBoard {
     }
   }
 
-  // right click function
-  toggleFlag(x, y) {
-    if (this.gameOver) return;
-    if (this.cells[x][y].isFlagged) {
-      this.cells[x][y].isFlagged = false;
-    } else {
-      this.cells[x][y].isFlagged = true;
-    }
-    this.draw();
-  }
-
-  // double click function
-  openAdjacentCellsOfNumber(row, col) {
-    if (this.cells[row][col].isFlagged) return;
-    for (let i = -1; i <= 1; i++) {
-      for (let j = -1; j <= 1; j++) {
-        let newRow = row + i;
-        let newCol = col + j;
-        if (
-          this.isValidCell(newRow, newCol) &&
-          !this.cells[newRow][newCol].isFlagged
-        ) {
-          this.openCell(newRow, newCol);
-        }
-      }
-    }
-  }
-
   checkWin() {
     let openedCells = 0;
     for (let i = 0; i < this.numRows; i++) {
@@ -178,7 +150,6 @@ class GameBoard {
       this.endGame(true);
     }
   }
-
   endGame(win) {
     this.gameOver = true;
     this.drawEndGame();
@@ -189,7 +160,6 @@ class GameBoard {
       alert("Game Over!");
     }
   }
-
   drawEndGame() {
     let game_board = document.getElementById(this.elementId);
     game_board.innerHTML = "";
@@ -214,6 +184,34 @@ class GameBoard {
         game_board.appendChild(unit);
       }
       game_board.appendChild(document.createElement("br"));
+    }
+  }
+
+  // right click function
+  toggleFlag(x, y) {
+    if (this.gameOver || this.cells[x][y].isOpen) return;
+    if (this.cells[x][y].isFlagged) {
+      this.cells[x][y].isFlagged = false;
+    } else {
+      this.cells[x][y].isFlagged = true;
+    }
+    this.draw();
+  }
+
+  // double click function
+  openAdjacentCellsOfNumber(row, col) {
+    if (this.cells[row][col].isFlagged) return;
+    for (let i = -1; i <= 1; i++) {
+      for (let j = -1; j <= 1; j++) {
+        let newRow = row + i;
+        let newCol = col + j;
+        if (
+          this.isValidCell(newRow, newCol) &&
+          !this.cells[newRow][newCol].isFlagged
+        ) {
+          this.openCell(newRow, newCol);
+        }
+      }
     }
   }
 }
