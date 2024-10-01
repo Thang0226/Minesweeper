@@ -3,23 +3,29 @@ body {
   text-align: center;
 }
 
-button {
+button,
+select {
   margin-bottom: 15px;
   width: 60px;
   height: 30px;
   font-size: 18px;
 }
 
+select {
+  width: 100px;
+}
+
 .cell {
-  width: 35px;
-  height: 30px;
+  width: 30px;
+  height: 28px;
   border: 1px solid #ccc;
   display: inline-block;
   text-align: center;
   vertical-align: middle;
-  padding-top: 5px;
+  padding-top: 2px;
   font-size: 22px;
   cursor: default;
+  user-select: none;
 
   /* Default color for unrevealed tiles */
   background-color: #eee;
