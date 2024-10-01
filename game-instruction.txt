@@ -1,0 +1,16 @@
+Cách chơi:
+
+Đầu tiên, chọn độ khó mà bạn muốn rồi nhấn "Play" để bắt đầu trò chơi.
+
+Trước mắt bạn là một bãi mìn. Nếu mở vào ô chứa mìn, bạn sẽ thua cuộc. Nếu mở ô không chứa mìn, một hoặc nhiều ô số sẽ hiện ra.
+Một số cho biết số ô chứa mìn xung quanh nó (số tối thiểu bằng 1, tối đa bằng 8).
+
+Click vào ô (click chuột trái) để mở ô.
+
+Click chuột phải để gắn cờ/bỏ gắn cờ ô mà bạn cho là chứa mìn. Sau khi đã gắn cờ, ô không mở được nữa. 
+Việc này giúp bạn không mở nhầm ô đã chắc chắn là mìn.
+
+Click đúp vào một ô số để tự động mở những ô không được gắn cờ xung quanh nó. 
+Hãy cẩn thận nếu bạn chưa gắn cờ tất cả ô có thể chứa mìn bên cạnh!
+
+Bạn chiến thắng trò chơi khi mở được tất cả ô không chứa mìn trong bãi mìn.

@@ -17,6 +17,22 @@
       <button onclick="startPlay()">Play</button>
       <div id="game-board"></div>
     </div>
+    <p id="instruction">
+      Hướng dẫn:
+      <ul>
+        <li>Đầu tiên, chọn độ khó mà bạn muốn <span>(Easy/Medium/Hard)</span> rồi nhấn <span>Play</span> để bắt đầu trò chơi.</li>
+        <li>Trước mắt bạn là một bãi mìn. Nếu mở vào ô chứa mìn, bạn sẽ thua cuộc! 
+          Nếu mở ô không chứa mìn, một hoặc nhiều ô số sẽ hiện ra.
+          Một số cho biết số ô chứa mìn xung quanh nó.</li>
+        <li><span>Click chuột trái</span> để mở ô.</li>
+        <li><span>Click chuột phải</span> để gắn cờ/bỏ gắn cờ ô mà bạn cho là chứa mìn. Sau khi đã gắn cờ, ô không mở được nữa. 
+          Việc này giúp bạn không mở nhầm ô đã chắc chắn là mìn.</li>
+        <li><span>Click đúp</span> vào một ô số để tự động mở những ô không được gắn cờ xung quanh nó. 
+          Hãy cẩn thận nếu bạn chưa gắn cờ tất cả ô có thể chứa mìn bên cạnh!</li>
+        <li>Bạn chiến thắng trò chơi khi mở được tất cả ô không chứa mìn trong bãi mìn.</li>
+        <li>Giờ bạn đã rõ cách chơi, tăng tốc độ để được lên top nhé!</li>
+      </ul>
+    </p>
 
     <script src="classes.js"></script>
     <script src="mine-sweeper.js"></script>

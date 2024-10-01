@@ -3,9 +3,32 @@ body {
   text-align: center;
 }
 
+h1 {
+  margin-bottom: 12px;
+}
+
+p {
+  text-align: left;
+  margin-bottom: 5px;
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+ul {
+  margin-top: 5px;
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+span {
+  font-weight: bold;
+  color: blue;
+}
+
 button,
 select {
-  margin-bottom: 15px;
+  margin-bottom: 18px;
   width: 60px;
   height: 30px;
   font-size: 18px;
