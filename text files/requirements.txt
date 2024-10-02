@@ -55,6 +55,7 @@ Tạo class GameBoard:
         endGame(): void
         startClock(): void
         updateTime(): void
+        updateScores(): void
 
 
 

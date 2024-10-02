@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Minesweeper</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <div>
@@ -14,7 +14,7 @@
         <option value="medium">Medium</option>
         <option value="hard">Hard</option>
       </select>
-      <button onclick="startPlay()">Play</button>
+      <button onclick="start()">Play</button>
       <input id="clock" value="0" />
       <div id="game-board"></div>
       <div id="instruction">
@@ -27,8 +27,8 @@
           </li>
           <li>
             Trước mắt bạn là một bãi mìn. Nếu mở vào ô chứa mìn, bạn sẽ thua
-            cuộc! Nếu mở ô không chứa mìn, một hoặc nhiều ô số sẽ hiện ra. Một
-            số cho biết số ô chứa mìn xung quanh nó.
+            cuộc! Nếu mở ô không chứa mìn, một hoặc nhiều ô số sẽ hiện ra. Một ô
+            số có giá trị bằng số ô chứa mìn xung quanh nó.
           </li>
           <li><span>Click chuột trái</span> để mở ô.</li>
           <li>
@@ -67,7 +67,11 @@
       </div>
     </div>
 
-    <script src="classes.js"></script>
-    <script src="mine-sweeper.js"></script>
+    <script src="js/Const.js"></script>
+    <script src="js/Cell.js"></script>
+    <script src="js/GameBoard.js"></script>
+    <script src="js/globalVariables.js"></script>
+    <script src="js/getScoreArrays.js"></script>
+    <script src="js/start.js"></script>
   </body>
 </html>

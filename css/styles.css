@@ -74,7 +74,7 @@ th {
 
 td {
   border: 1px solid gray;
-  width: 80px;
+  width: 70px;
   height: 30px;
   color: rgb(187, 0, 0);
   font-size: large;
@@ -125,7 +125,7 @@ td {
 #high-scores {
   margin-top: 20px;
   display: inline-block;
-  width: 30%;
+  width: 35%;
   vertical-align: top;
   color: gray;
 }

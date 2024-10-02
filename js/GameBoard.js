@@ -1,49 +1,8 @@
-const clock = document.getElementById("clock");
-const high_score_easy = document.getElementById("high-score-easy");
-const high_score_medium = document.getElementById("high-score-medium");
-const high_score_hard = document.getElementById("high-score-hard");
-const WIN = 1;
-const LOSE = 2;
-
-let clockIntervalID = null;
-let scores_easy = [];
-let scores_medium = [];
-let scores_hard = [];
-// take scores to arrays and show highscores if localStorage had scores
-if (localStorage.getItem("scores_easy")) {
-  scores_easy = localStorage.getItem("scores_easy").split(",");
-  if (scores_easy[0]) {
-    high_score_easy.innerHTML = scores_easy[0];
-  }
-}
-if (localStorage.getItem("scores_medium")) {
-  scores_medium = localStorage.getItem("scores_medium").split(",");
-  if (scores_medium[0]) {
-    high_score_medium.innerHTML = scores_medium[0];
-  }
-}
-if (localStorage.getItem("scores_hard")) {
-  scores_hard = localStorage.getItem("scores_hard").split(",");
-  if (scores_hard[0]) {
-    high_score_hard.innerHTML = scores_hard[0];
-  }
-}
-
-class Cell {
-  constructor() {
-    this.isMine = false;
-    this.isOpen = false;
-    this.isFlagged = false;
-    this.mineCount = 0;
-  }
-}
-
 class GameBoard {
-  constructor(numRows, numCols, numMines, elementId) {
+  constructor(numRows, numCols, numMines) {
     this.numRows = numRows;
     this.numCols = numCols;
     this.numMines = numMines;
-    this.elementId = elementId;
     this.cells = [];
     this.gameOver = false;
   }
@@ -84,6 +43,7 @@ class GameBoard {
       }
     }
   }
+
   countMinesAround(row, col) {
     let count = 0;
     for (let i = -1; i <= 1; i++) {
@@ -97,14 +57,13 @@ class GameBoard {
     }
     return count;
   }
+
   isValidCell(row, col) {
     return row >= 0 && row < this.numRows && col >= 0 && col < this.numCols;
   }
 
   draw() {
-    let game_board = document.getElementById(this.elementId);
     game_board.innerHTML = "";
-
     for (let i = 0; i < this.numRows; i++) {
       for (let j = 0; j < this.numCols; j++) {
         let unit = document.createElement("div");
@@ -136,7 +95,7 @@ class GameBoard {
     }
   }
 
-  // click function
+  // when left click on a cell
   openCell(x, y) {
     if (this.gameOver) return;
     if (this.cells[x][y].isOpen || this.cells[x][y].isFlagged) return;
@@ -152,6 +111,7 @@ class GameBoard {
 
     this.checkWin();
   }
+
   openAdjacentCellsOfZero(row, col) {
     for (let r = -1; r <= 1; r++) {
       for (let c = -1; c <= 1; c++) {
@@ -181,6 +141,7 @@ class GameBoard {
       this.endGame(true);
     }
   }
+
   endGame(win) {
     if (win) {
       alert("You Won!");
@@ -191,8 +152,8 @@ class GameBoard {
     }
     this.drawEndGame();
   }
+
   drawEndGame() {
-    let game_board = document.getElementById(this.elementId);
     game_board.innerHTML = "";
     for (let i = 0; i < this.numRows; i++) {
       for (let j = 0; j < this.numCols; j++) {
@@ -218,7 +179,7 @@ class GameBoard {
     }
   }
 
-  // right click function
+  // when right click on a cell
   toggleFlag(x, y) {
     if (this.gameOver || this.cells[x][y].isOpen) return;
     if (this.cells[x][y].isFlagged) {
@@ -229,7 +190,7 @@ class GameBoard {
     this.draw();
   }
 
-  // double click function
+  // when double click on a cell
   openAdjacentCellsOfNumber(row, col) {
     if (this.cells[row][col].isFlagged) return;
     for (let i = -1; i <= 1; i++) {
@@ -246,7 +207,7 @@ class GameBoard {
     }
   }
 
-  // count play time
+  // count play time when clock is started
   startClock() {
     let begin_time = new Date();
     clock.value = 0;
@@ -254,15 +215,16 @@ class GameBoard {
       clearInterval(clockIntervalID);
       clockIntervalID = null;
     }
-    clockIntervalID = setInterval(() => this.updateTime(begin_time), 1000);
+    clockIntervalID = setInterval(() => this.updateClock(begin_time), 1000);
   }
-  updateTime(begin) {
+
+  updateClock(begin) {
     if (this.gameOver) {
-      // clear interval and return when game is over
+      // clear interval and stop update clock when game is over
       clearInterval(clockIntervalID);
       // update scores if won
-      if (this.gameOver == WIN) {
-        this.updateScores();
+      if (this.gameOver === WIN) {
+        this.updateScore();
       }
       return;
     }
@@ -272,33 +234,25 @@ class GameBoard {
     clock.value = Math.round(time / 1000);
   }
 
-  updateScores() {
-    switch (mode) {
+  updateScore() {
+    switch (mode.value) {
       case "easy":
         scores_easy.push(clock.value);
         scores_easy.sort((a, b) => a - b);
+        high_score_easy.innerHTML = scores_easy[0];
+        localStorage.setItem("scores_easy", scores_easy.join(","));
         break;
       case "medium":
         scores_medium.push(clock.value);
         scores_medium.sort((a, b) => a - b);
+        high_score_medium.innerHTML = scores_medium[0];
+        localStorage.setItem("scores_medium", scores_medium.join(","));
         break;
       case "hard":
         scores_hard.push(clock.value);
         scores_hard.sort((a, b) => a - b);
+        high_score_hard.innerHTML = scores_hard[0];
+        localStorage.setItem("scores_hard", scores_hard.join(","));
     }
-
-    if (scores_easy[0]) {
-      high_score_easy.innerHTML = scores_easy[0];
-    }
-    if (scores_medium[0]) {
-      high_score_medium.innerHTML = scores_medium[0];
-    }
-    if (scores_hard[0]) {
-      high_score_hard.innerHTML = scores_hard[0];
-    }
-
-    localStorage.setItem("scores_easy", scores_easy.join(","));
-    localStorage.setItem("scores_medium", scores_medium.join(","));
-    localStorage.setItem("scores_hard", scores_hard.join(","));
   }
 }
