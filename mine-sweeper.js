@@ -1,9 +1,10 @@
 let numRows;
 let numCols;
 let numMines;
+let mode;
 
 function startPlay() {
-  let mode = document.getElementById("mode").value;
+  mode = document.getElementById("mode").value;
   switch (mode) {
     case "easy":
       numRows = 10;

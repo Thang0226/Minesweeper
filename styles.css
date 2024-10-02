@@ -24,7 +24,7 @@ button {
   color: #000;
   border-radius: 5px;
   text-align: center;
-  width: 50px;
+  width: 60px;
   height: 30px;
   padding: 0;
 }
@@ -47,7 +47,7 @@ ul {
 
 span {
   font-weight: bold;
-  color: blue;
+  color: rgba(0, 0, 255, 0.75);
 }
 
 select {
@@ -59,6 +59,7 @@ select {
 
 table {
   border-collapse: collapse;
+  border: 5px solid gray;
   text-align: center;
   margin: 0 auto;
   margin-top: 10px;
@@ -74,7 +75,9 @@ td {
   border: 1px solid gray;
   width: 80px;
   height: 30px;
-  color: green;
+  color: rgb(187, 0, 0);
+  font-size: large;
+  font-weight: bold;
 }
 
 .cell {
@@ -119,6 +122,7 @@ td {
 }
 
 #high-scores {
+  margin-top: 20px;
   display: inline-block;
   width: 30%;
   vertical-align: top;

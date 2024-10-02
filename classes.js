@@ -1,5 +1,31 @@
 const clock = document.getElementById("clock");
+const high_score_easy = document.getElementById("high-score-easy");
+const high_score_medium = document.getElementById("high-score-medium");
+const high_score_hard = document.getElementById("high-score-hard");
+
 let clockIntervalID = null;
+let scores_easy = [];
+let scores_medium = [];
+let scores_hard = [];
+// take scores to arrays and show highscores if localStorage had scores
+if (localStorage.getItem("scores_easy")) {
+  scores_easy = localStorage.getItem("scores_easy").split(",");
+  if (scores_easy[0]) {
+    high_score_easy.innerHTML = scores_easy[0];
+  }
+}
+if (localStorage.getItem("scores_medium")) {
+  scores_medium = localStorage.getItem("scores_medium").split(",");
+  if (scores_medium[0]) {
+    high_score_medium.innerHTML = scores_medium[0];
+  }
+}
+if (localStorage.getItem("scores_hard")) {
+  scores_hard = localStorage.getItem("scores_hard").split(",");
+  if (scores_hard[0]) {
+    high_score_hard.innerHTML = scores_hard[0];
+  }
+}
 
 class Cell {
   constructor() {
@@ -218,9 +244,10 @@ class GameBoard {
     }
   }
 
-  // count processing time
+  // count play time
   startClock() {
     let begin_time = new Date();
+    clock.value = 0;
     if (clockIntervalID) {
       clearInterval(clockIntervalID);
       clockIntervalID = null;
@@ -229,9 +256,38 @@ class GameBoard {
   }
   updateTime(begin) {
     if (this.gameOver) {
-      clock.value = 0;
+      // clear interval and update high scores when game is over
+      clearInterval(clockIntervalID);
+      switch (mode) {
+        case "easy":
+          scores_easy.push(clock.value);
+          scores_easy.sort((a, b) => a - b);
+          break;
+        case "medium":
+          scores_medium.push(clock.value);
+          scores_medium.sort((a, b) => a - b);
+          break;
+        case "hard":
+          scores_hard.push(clock.value);
+          scores_hard.sort((a, b) => a - b);
+      }
+
+      if (scores_easy[0]) {
+        high_score_easy.innerHTML = scores_easy[0];
+      }
+      if (scores_medium[0]) {
+        high_score_medium.innerHTML = scores_medium[0];
+      }
+      if (scores_hard[0]) {
+        high_score_hard.innerHTML = scores_hard[0];
+      }
+      localStorage.setItem("scores_easy", scores_easy.join(","));
+      localStorage.setItem("scores_medium", scores_medium.join(","));
+      localStorage.setItem("scores_hard", scores_hard.join(","));
+
       return;
     }
+
     let date = new Date();
     let time = date.getTime() - begin.getTime();
     clock.value = Math.round(time / 1000);
