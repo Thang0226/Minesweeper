@@ -4,7 +4,7 @@ let numCols;
 let numMines;
 
 // clock variable
-let clockIntervalID = NaN;
+let clockIntervalID = null;
 
 // score arrays
 let scores_easy = [];
