@@ -16,7 +16,7 @@ function start() {
       numMines = 70;
   }
 
-  let game_board = new GameBoard(numRows, numCols, numMines);
-  game_board.initBoard();
-  game_board.startClock();
+  let game = new GameBoard(numRows, numCols, numMines);
+  game.initBoard();
+  game.startClock();
 }

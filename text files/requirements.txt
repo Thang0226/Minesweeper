@@ -39,7 +39,6 @@ Tạo class GameBoard:
         numRows: int
         numCols: int
         numMines: int
-        elementId: string
         cells: array of Cell objects
         gameOver: boolean
 
@@ -54,7 +53,7 @@ Tạo class GameBoard:
         checkWin(): void
         endGame(): void
         startClock(): void
-        updateTime(): void
+        updateClock(): void
         updateScores(): void
 
 

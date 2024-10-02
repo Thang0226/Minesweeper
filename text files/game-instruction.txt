@@ -3,7 +3,7 @@ Cách chơi:
 Đầu tiên, chọn độ khó mà bạn muốn rồi nhấn "Play" để bắt đầu trò chơi.
 
 Trước mắt bạn là một bãi mìn. Nếu mở vào ô chứa mìn, bạn sẽ thua cuộc. Nếu mở ô không chứa mìn, một hoặc nhiều ô số sẽ hiện ra.
-Một số cho biết số ô chứa mìn xung quanh nó (số tối thiểu bằng 1, tối đa bằng 8).
+Một ô số có giá trị bằng số ô chứa mìn xung quanh nó (số tối thiểu bằng 1, tối đa bằng 8).
 
 Click vào ô (click chuột trái) để mở ô.
 
