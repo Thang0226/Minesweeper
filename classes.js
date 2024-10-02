@@ -2,6 +2,8 @@ const clock = document.getElementById("clock");
 const high_score_easy = document.getElementById("high-score-easy");
 const high_score_medium = document.getElementById("high-score-medium");
 const high_score_hard = document.getElementById("high-score-hard");
+const WIN = 1;
+const LOSE = 2;
 
 let clockIntervalID = null;
 let scores_easy = [];
@@ -180,14 +182,14 @@ class GameBoard {
     }
   }
   endGame(win) {
-    this.gameOver = true;
-    this.drawEndGame();
-
     if (win) {
       alert("You Won!");
+      this.gameOver = WIN;
     } else {
       alert("Game Over!");
+      this.gameOver = LOSE;
     }
+    this.drawEndGame();
   }
   drawEndGame() {
     let game_board = document.getElementById(this.elementId);
@@ -256,40 +258,47 @@ class GameBoard {
   }
   updateTime(begin) {
     if (this.gameOver) {
-      // clear interval and update high scores when game is over
+      // clear interval and return when game is over
       clearInterval(clockIntervalID);
-      switch (mode) {
-        case "easy":
-          scores_easy.push(clock.value);
-          scores_easy.sort((a, b) => a - b);
-          break;
-        case "medium":
-          scores_medium.push(clock.value);
-          scores_medium.sort((a, b) => a - b);
-          break;
-        case "hard":
-          scores_hard.push(clock.value);
-          scores_hard.sort((a, b) => a - b);
+      // update scores if won
+      if (this.gameOver == WIN) {
+        this.updateScores();
       }
-
-      if (scores_easy[0]) {
-        high_score_easy.innerHTML = scores_easy[0];
-      }
-      if (scores_medium[0]) {
-        high_score_medium.innerHTML = scores_medium[0];
-      }
-      if (scores_hard[0]) {
-        high_score_hard.innerHTML = scores_hard[0];
-      }
-      localStorage.setItem("scores_easy", scores_easy.join(","));
-      localStorage.setItem("scores_medium", scores_medium.join(","));
-      localStorage.setItem("scores_hard", scores_hard.join(","));
-
       return;
     }
 
     let date = new Date();
     let time = date.getTime() - begin.getTime();
     clock.value = Math.round(time / 1000);
+  }
+
+  updateScores() {
+    switch (mode) {
+      case "easy":
+        scores_easy.push(clock.value);
+        scores_easy.sort((a, b) => a - b);
+        break;
+      case "medium":
+        scores_medium.push(clock.value);
+        scores_medium.sort((a, b) => a - b);
+        break;
+      case "hard":
+        scores_hard.push(clock.value);
+        scores_hard.sort((a, b) => a - b);
+    }
+
+    if (scores_easy[0]) {
+      high_score_easy.innerHTML = scores_easy[0];
+    }
+    if (scores_medium[0]) {
+      high_score_medium.innerHTML = scores_medium[0];
+    }
+    if (scores_hard[0]) {
+      high_score_hard.innerHTML = scores_hard[0];
+    }
+
+    localStorage.setItem("scores_easy", scores_easy.join(","));
+    localStorage.setItem("scores_medium", scores_medium.join(","));
+    localStorage.setItem("scores_hard", scores_hard.join(","));
   }
 }
