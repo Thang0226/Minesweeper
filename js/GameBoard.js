@@ -62,6 +62,7 @@ class GameBoard {
     return row >= 0 && row < this.numRows && col >= 0 && col < this.numCols;
   }
 
+  // draw game board
   draw() {
     game_board.innerHTML = "";
     for (let i = 0; i < this.numRows; i++) {
@@ -152,7 +153,7 @@ class GameBoard {
     }
     this.drawEndGame();
   }
-
+  // draw game board with all mines revealed when game end
   drawEndGame() {
     game_board.innerHTML = "";
     for (let i = 0; i < this.numRows; i++) {
