@@ -5,6 +5,7 @@ class GameBoard {
     this.numMines = numMines;
     this.cells = [];
     this.gameOver = false;
+    this.playerName = prompt("Enter your name:");
   }
 
   initBoard() {
@@ -238,22 +239,33 @@ class GameBoard {
   updateScore() {
     switch (mode.value) {
       case "easy":
-        scores_easy.push(clock.value);
-        scores_easy.sort((a, b) => a - b);
-        high_score_easy.innerHTML = scores_easy[0];
-        localStorage.setItem("scores_easy", scores_easy.join(","));
+        if (
+          clock.value < scores_easy[this.playerName] ||
+          !scores_easy[this.playerName]
+        ) {
+          scores_easy[this.playerName] = clock.value;
+          localStorage.setItem("scores_easy", JSON.stringify(scores_easy));
+        }
         break;
       case "medium":
-        scores_medium.push(clock.value);
-        scores_medium.sort((a, b) => a - b);
-        high_score_medium.innerHTML = scores_medium[0];
-        localStorage.setItem("scores_medium", scores_medium.join(","));
+        if (
+          clock.value < scores_medium[this.playerName] ||
+          !scores_medium[this.playerName]
+        ) {
+          scores_medium[this.playerName] = clock.value;
+          localStorage.setItem("scores_medium", JSON.stringify(scores_medium));
+        }
         break;
       case "hard":
-        scores_hard.push(clock.value);
-        scores_hard.sort((a, b) => a - b);
-        high_score_hard.innerHTML = scores_hard[0];
-        localStorage.setItem("scores_hard", scores_hard.join(","));
+        if (
+          clock.value < scores_hard[this.playerName] ||
+          !scores_hard[this.playerName]
+        ) {
+          scores_hard[this.playerName] = clock.value;
+          localStorage.setItem("scores_hard", JSON.stringify(scores_hard));
+        }
     }
+
+    showHighScores();
   }
 }
